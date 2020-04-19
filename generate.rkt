@@ -25,11 +25,11 @@
 
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
-                  "td#yes { background-color: limegreen; } "
-                  "td#no { background-color: orangered; } "
-                  "th { border-right 1px solid black; } "
-                  "td#withdrawn { background-color: lightsalmon; } "
-                  "td#draft { background-color: powderblue; }"))
+                  "td.yes { background-color: limegreen; } "
+                  "td.no { background-color: orangered; } "
+                  "th { border-right: 1px solid black; } "
+                  "td.withdrawn { background-color: lightsalmon; } "
+                  "td.draft { background-color: powderblue; }"))
 
 @(define (support-box srfi)
    (let* ((elem (cdr (assoc srfi srfis)))
@@ -38,17 +38,17 @@
           (status (cdr (assoc 'status elem)))
           (support (cdr (assoc 'support elem))))
      (tr
-      id: srfi
+      class: srfi
       title: (~a description " [" status "]")
       (cons
        (td
-        id: status
+        class: status
         (a href: url srfi))
        (map
         (lambda (s)
           (if (member s support)
-              (td id: 'yes "\u2713")
-              (td id: 'no "\u2717")))
+              (td class: 'yes "\u2713")
+              (td class: 'no "\u2717")))
         implementations)))))
 
 @(list
