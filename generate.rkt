@@ -34,13 +34,14 @@ td#no { background-color: orangered; }")
 
 @(define (support-box srfi)
    (let* ((elem (cdr (assoc srfi srfis)))
-          (support (assoc 'support elem))
-          (description (cdr (assoc 'description elem))))
+          (description (cdr (assoc 'description elem)))
+          (url (cdr (assoc 'url elem)))
+          (support (cdr (assoc 'support elem))))
      (tr
       id: srfi
       title: description
       (cons
-       (td srfi)
+       (td (a href: url srfi))
        (map
         (lambda (s)
           (if (member s support)
