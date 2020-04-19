@@ -1,0 +1,2 @@
+* SRFI Metadata
+This repository contains a collection of parseable [[https://srfi.schemers.org][SRFI]] metadata.
