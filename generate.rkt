@@ -8,6 +8,7 @@
 
 @(define implementations
    '(Bigloo
+     Chez
      Chibi
      CHICKEN
      Gambit
@@ -16,12 +17,15 @@
      Guile
      Kawa
      Larceny
+     Loko
      Racket
      Sagittarius
      Scheme48
      SLIB
      STKlos
-     TinyScheme))
+     TinyScheme
+     Vicare
+     Ypsilon))
 
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
@@ -57,11 +61,13 @@
    lang: "en"
    (head
     (meta charset: "utf-8")
-    (style/inline
-     type: "text/css" CSS)
+    (style/inline CSS)
     (title "SRFI Table"))
    (body
     (h1 "SRFI Table")
+    (p "Only includes SRFIs bundled in each implementation's"
+       " respective standard library. "
+       "Does not yet include third-party/external packages.")
     (table
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
      (apply tbody (map support-box (range 193)))
