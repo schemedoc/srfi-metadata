@@ -1,7 +1,8 @@
 #lang scribble/html
 
 @(require (except-in scribble/html/extra map)
-          racket/date)
+          racket/date
+          racket/format)
 
 @(define srfis (call-with-input-file "srfi.scm" read))
 
@@ -23,25 +24,26 @@
      TinyScheme))
 
 @(define CSS
-   "table, th, td
-{
- border: 1px solid black;
- border-collapse: collapse;
- table-layout: fixed;
-}
-td#yes { background-color: limegreen; }
-td#no { background-color: orangered; }")
+   (string-append "table { table-layout: fixed; text-align: center; } "
+                  "td#yes { background-color: limegreen; } "
+                  "td#no { background-color: orangered; } "
+                  "th { border-right 1px solid black; } "
+                  "td#withdrawn { background-color: lightsalmon; } "
+                  "td#draft { background-color: powderblue; }"))
 
 @(define (support-box srfi)
    (let* ((elem (cdr (assoc srfi srfis)))
           (description (cdr (assoc 'description elem)))
           (url (cdr (assoc 'url elem)))
+          (status (cdr (assoc 'status elem)))
           (support (cdr (assoc 'support elem))))
      (tr
       id: srfi
-      title: description
+      title: (~a description " [" status "]")
       (cons
-       (td (a href: url srfi))
+       (td
+        id: status
+        (a href: url srfi))
        (map
         (lambda (s)
           (if (member s support)
