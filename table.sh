@@ -1,4 +1,4 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-racket generate.rkt >table.html
+racket table.rkt >table.html
