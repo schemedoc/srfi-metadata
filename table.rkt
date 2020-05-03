@@ -22,6 +22,7 @@
      Kawa
      Larceny
      Loko
+     MIT
      Racket
      Sagittarius
      Scheme48
