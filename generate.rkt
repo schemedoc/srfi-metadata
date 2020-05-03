@@ -1,10 +1,14 @@
 #lang scribble/html
 
 @(require (except-in scribble/html/extra map)
+          srfi/1
           racket/date
           racket/format)
 
-@(define srfis (call-with-input-file "srfi.scm" read))
+@(define (read-all)
+   (let loop ((forms '()))
+     (let ((form (read)))
+       (if (eof-object? form) (reverse forms) (loop (cons form forms))))))
 
 @(define implementations
    '(Bigloo
@@ -27,6 +31,29 @@
      Vicare
      Ypsilon))
 
+@(define srfi-data (with-input-from-file "srfi-data.scm" read-all))
+
+@(define implementation-srfis
+   (fold (lambda (impl h)
+           (let* ((filename (string-append
+                             "listings/"
+                             (string-downcase (symbol->string impl)) ".scm"))
+                  (srfis (with-input-from-file filename read-all)))
+             (hash-set h impl srfis)))
+         (hash) implementations))
+
+@(define srfi-implementations
+   (let ((h (hash)))
+     (hash-for-each
+      implementation-srfis
+      (lambda (impl srfis)
+        (for-each (lambda (srfi)
+                    (set! h (hash-update h srfi
+                                         (lambda (impls) (cons impl impls))
+                                         list)))
+                  srfis)))
+     h))
+
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
                   "td.yes { background-color: limegreen; } "
@@ -35,19 +62,25 @@
                   "td.withdrawn { background-color: lightsalmon; } "
                   "td.draft { background-color: powderblue; }"))
 
+@(define (srfi-url number)
+   (let ((number (number->string number)))
+     (string-append "https://srfi.schemers.org"
+                    "/srfi-" number
+                    "/srfi-" number ".html")))
+
 @(define (support-box srfi)
-   (let* ((elem (cdr (assoc srfi srfis)))
-          (description (cdr (assoc 'description elem)))
-          (url (cdr (assoc 'url elem)))
-          (status (cdr (assoc 'status elem)))
-          (support (cdr (assoc 'support elem))))
+   (let* ((number (cadr (assoc 'number srfi)))
+          (status (cadr (assoc 'status srfi)))
+          (title  (cadr (assoc 'title  srfi)))
+          (support (hash-ref srfi-implementations number list))
+          (url (srfi-url number)))
      (tr
-      class: srfi
-      title: (~a description " [" status "]")
+      class: number
+      title: (~a title " [" status "]")
       (cons
        (td
         class: status
-        (a href: url srfi))
+        (a href: url number))
        (map
         (lambda (s)
           (if (member s support)
@@ -70,7 +103,7 @@
        "Does not yet include third-party/external packages.")
     (table
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
-     (apply tbody (map support-box (range 193)))
+     (apply tbody (map support-box srfi-data))
      (tfoot))
     (footer
      (p "Generated on "
