@@ -109,4 +109,7 @@
     (footer
      (p "Generated on "
         (parameterize ((date-display-format 'iso-8601))
-         (date->string (current-date))))))))
+          (date->string (current-date))) ".")
+     (p "Submit your corrections and requests to "
+        (a href: "https://github.com/SchemeDoc/srfi-metadata"
+           "srfi-metadata repo") ".")))))
