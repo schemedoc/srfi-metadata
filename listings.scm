@@ -88,14 +88,14 @@
              ,@(if (not (scheme-contents scm))
                    `("tar -tf -"
                      ,(string-append
-                       "grep -ohE "
+                       "grep -oE "
                        "'" (scheme-archive-filename scm git-ref) "'")
                      "sed 's@%3a@@'")
                    `(,(string-append
                        "tar -xf - --to-stdout "
                        "'" (scheme-archive-filename scm git-ref) "'")
                      ,(string-append
-                       "grep -ohE"
+                       "grep -oE"
                        " " "'" (scheme-contents scm) "'")))
              "grep -oE '[0-9]+'"
              "sort -g"
