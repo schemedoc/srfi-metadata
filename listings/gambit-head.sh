@@ -2,11 +2,11 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-    https://github.com/ashinn/chibi-scheme/archive/0.8.tar.gz |
+    https://github.com/gambit/gambit/archive/master.tar.gz |
     gunzip |
     tar -tf - |
-    grep -ohE 'chibi-scheme-0.8/lib/srfi/[0-9]+.sld' |
+    grep -ohE 'gambit-master/lib/srfi/[0-9]+' |
     sed 's@%3a@@' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >chibi.scm
+    uniq >gambit-head.scm

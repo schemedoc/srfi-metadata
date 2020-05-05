@@ -2,10 +2,10 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-    https://github.com/vyzo/gerbil/archive/v0.15.1.tar.gz |
+    https://github.com/vyzo/gerbil/archive/master.tar.gz |
     gunzip |
-    tar -xf - --to-stdout 'gerbil-0.15.1/doc/guide/srfi.md' |
+    tar -xf - --to-stdout 'gerbil-master/doc/guide/srfi.md' |
     grep -ohE '\[SRFI +[0-9]+\]' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >gerbil.scm
+    uniq >gerbil-head.scm
