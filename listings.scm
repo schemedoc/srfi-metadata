@@ -37,10 +37,6 @@
                 "vyzo" "gerbil" "master" "v0.15.1"
                 "doc/guide/srfi.md" "\\[SRFI +[0-9]+\\]")
 
-   (make-scheme "loko"
-                "weinholt" "loko" "master" #f
-                "Documentation/manual/lib-std.texi" "^@code{\\(srfi :[0-9]+ ")
-
    ))
 
 (define (displayln x) (display x) (newline))
