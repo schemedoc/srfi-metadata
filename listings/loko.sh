@@ -9,4 +9,3 @@ curl --fail --silent --show-error --location \
     grep -oE '[0-9]+' |
     sort -g |
     uniq >loko.scm
-printf '' >loko.scm
