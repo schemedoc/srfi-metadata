@@ -1,4 +1,4 @@
-(import (scheme base) (scheme file) (scheme write))
+(import (scheme base) (scheme char) (scheme file) (scheme write))
 
 (define-record-type scheme (make-scheme name
                                         github-user
@@ -68,7 +68,9 @@
 (define (scheme-archive-filename scm git-ref)
   (string-append (scheme-github-repo scm)
                  "-"
-                 (if (char=? #\v (string-ref git-ref 0))
+                 (if (and (>= (string-length git-ref) 2)
+                          (char=? #\v (string-ref git-ref 0))
+                          (char-numeric? (string-ref git-ref 1)))
                      (substring git-ref 1 (string-length git-ref))
                      git-ref)
                  "/"
