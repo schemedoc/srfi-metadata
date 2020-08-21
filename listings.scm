@@ -37,6 +37,10 @@
                 "vyzo" "gerbil" "master" "v0.15.1"
                 "doc/guide/srfi.md" "\\[SRFI +[0-9]+\\]")
 
+   (make-scheme "sagittarius"
+                "ktakashi" "sagittarius-scheme" "master" "version_0.9.7"
+                "doc/srfi.scrbl" "\\(srfi :[0-9]+[ )]")
+
    (make-scheme "stklos"
                 "egallesio" "STklos" "master" "stklos-1.50"
                 "doc/skb/srfi.stk" "^ +.?\\(?\\([0-9]+ +\\. \"")
