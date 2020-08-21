@@ -34,30 +34,28 @@
 
 @(define srfi-data (with-input-from-file "srfi-data.scm" read-all))
 
-@(define implementation-srfis
-   (fold (lambda (impl h)
-           (let* ((filename (string-append
-                             "listings/"
-                             (string-downcase (symbol->string impl)) ".scm"))
-                  (srfis (with-input-from-file filename read-all)))
-             (hash-set h impl srfis)))
-         (hash) implementations))
+@(define (read-listing impl suffix)
+   (let* ((impl (string-downcase (symbol->string impl)))
+          (filename (string-append "listings" "/" impl suffix ".scm")))
+     (with-input-from-file filename read-all)))
 
-@(define srfi-implementations
-   (let ((h (hash)))
-     (hash-for-each
-      implementation-srfis
-      (lambda (impl srfis)
-        (for-each (lambda (srfi)
-                    (set! h (hash-update h srfi
-                                         (lambda (impls) (cons impl impls))
-                                         list)))
-                  srfis)))
-     h))
+@(define implementation-support
+   (map (lambda (impl)
+          (cons impl
+                (let ((srfis (hash)))
+                  (define (tag-as tag)
+                    (lambda (number)
+                      (set! srfis (hash-set srfis number tag))))
+                  (for-each (tag-as 'release) (read-listing impl ""))
+                  (for-each (tag-as 'head)    (read-listing impl "-head"))
+                  (map (lambda (number) (cons number (hash-ref srfis number)))
+                       (sort (hash-keys srfis) <)))))
+        implementations))
 
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
-                  "td.yes { background-color: limegreen; } "
+                  "td.release { background-color: limegreen; } "
+                  "td.head { background-color: green; } "
                   "td.no { background-color: orangered; } "
                   "th { border-right: 1px solid black; } "
                   "td.withdrawn { background-color: lightsalmon; } "
@@ -70,10 +68,12 @@
                     "/srfi-" number ".html")))
 
 @(define (support-box srfi)
+   (define (assoc? key alist)
+     (let ((pair (assoc key alist)))
+       (and pair (cdr pair))))
    (let* ((number (cadr (assoc 'number srfi)))
           (status (cadr (assoc 'status srfi)))
           (title  (cadr (assoc 'title  srfi)))
-          (support (hash-ref srfi-implementations number list))
           (url (srfi-url number)))
      (tr
       class: number
@@ -83,10 +83,15 @@
         class: status
         (a href: url number))
        (map
-        (lambda (s)
-          (if (member s support)
-              (td class: 'yes "\u2713")
-              (td class: 'no "\u2717")))
+        (lambda (implementation)
+          (let ((supported (assoc? number (assoc? implementation
+                                                  implementation-support))))
+            (if (not supported)
+                (td class: 'no "\u2717")
+                (case supported
+                  ((release) (td class: 'release "\u2713"))
+                  ((head)    (td class: 'head    "\u2713"))
+                  (else      (error "Huh?"))))))
         implementations)))))
 
 @(list
