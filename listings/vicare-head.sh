@@ -3,10 +3,10 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-    https://github.com/marcomaggi/vicare/archive/v0.4d1.tar.gz |
+    https://github.com/marcomaggi/vicare/archive/master.tar.gz |
     gunzip |
-    tar -xf - --to-stdout 'vicare-0.4d1/doc/srfi.texi' |
+    tar -xf - --to-stdout 'vicare-master/doc/srfi.texi' |
     grep -oE '@ansrfi{[0-9]+}' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >vicare.scm
+    uniq >vicare-head.scm

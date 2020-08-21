@@ -41,6 +41,10 @@
                 "egallesio" "STklos" "master" "stklos-1.50"
                 "doc/skb/srfi.stk" "^ +.?\\(?\\([0-9]+ +\\. \"")
 
+   (make-scheme "vicare"
+                "marcomaggi" "vicare" "master" "v0.4d1"
+                "doc/srfi.texi" "@ansrfi{[0-9]+}")
+
    ))
 
 (define (displayln x) (display x) (newline))
