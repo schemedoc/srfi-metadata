@@ -3,10 +3,10 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-	https://gitlab.com/kashell/Kawa/-/archive/3.1.1/kawa-3.1.1.tar.gz |
+	https://gitlab.com/kashell/Kawa/-/archive/master.tar.gz |
 	gunzip |
-	tar -xf - --to-stdout --wildcards 'Kawa-3.1.1*/doc/kawa.texi' |
+	tar -xf - --to-stdout --wildcards 'Kawa-master*/doc/kawa.texi' |
 	grep -oE '^@uref{http://srfi.schemers.org/srfi-[0-9]+/srfi-[0-9]+.html, SRFI [0-9]+}: ' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > kawa.scm
+	uniq > kawa-head.scm
