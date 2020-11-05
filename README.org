@@ -1,2 +1,20 @@
 * SRFI Metadata
 This repository contains a collection of parseable [[https://srfi.schemers.org][SRFI]] metadata.
+Currently doesn't generate data about third-party SRFI libraries.
+Contributions welcome!
+
+You can view the table [[http://htmlpreview.github.io/?https://github.com/schemedoc/srfi-metadata/blob/master/table.html][here]].
+
+** How to update the table
+   Run =srfi-data.sh= to refresh the SRFI data in =srfi-data.scm=.
+
+   Run =listings.sh= to generate scripts in =listings/\*.sh=.
+   This script calls Gauche by default, but you can adjust it to use
+   any R7RS Scheme for =listings.scm=.
+
+   Switch to =listings= directory and run
+   =for f in \*sh; do echo "$f"; ./"$f"; done= to obtain each
+   implementation's supported SRFIs in in =listings/\*.scm=.
+
+   Run =table.sh= (uses Racket) to generate =table.html=. Done!
+   You can now push the newest =table.html=.
