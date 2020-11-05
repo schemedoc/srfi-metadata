@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '^@code{\(srfi :[0-9]+ ' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > loko.scm
+	uniq > ../data/loko.scm

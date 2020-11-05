@@ -10,4 +10,4 @@ curl --fail --silent --show-error --location \
 	sed 's@%3a@@' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > chibi-head.scm
+	uniq > ../data/chibi-head.scm

@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '\(srfi :[0-9]+[ )]' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > sagittarius.scm
+	uniq > ../data/sagittarius.scm

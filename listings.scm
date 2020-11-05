@@ -152,7 +152,7 @@
             (list
              "grep -oE '[0-9]+'"
              "sort -g"
-             (string-append "uniq > " name ".scm"))))))))
+             (string-append "uniq > ../data/" name ".scm"))))))))
 
 (for-each (lambda (scm)
             (write-listing scm (scheme-git-ref/head scm) "-head")

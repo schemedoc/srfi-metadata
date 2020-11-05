@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '^@uref{http://srfi.schemers.org/srfi-[0-9]+/srfi-[0-9]+.html, SRFI [0-9]+}: ' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > kawa-head.scm
+	uniq > ../data/kawa-head.scm

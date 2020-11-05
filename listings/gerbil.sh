@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '\[SRFI +[0-9]+\]' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > gerbil.scm
+	uniq > ../data/gerbil.scm

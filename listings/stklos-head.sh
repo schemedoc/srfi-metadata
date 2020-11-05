@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '^ +.?\(?\([0-9]+ +\. "' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > stklos-head.scm
+	uniq > ../data/stklos-head.scm

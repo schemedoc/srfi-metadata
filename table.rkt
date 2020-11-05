@@ -26,17 +26,18 @@
      Racket
      Sagittarius
      Scheme48
-     SLIB
      STKlos
      TinyScheme
      Vicare
-     Ypsilon))
+     Ypsilon
+     SLIB
+     Snow-Fort))
 
-@(define srfi-data (with-input-from-file "srfi-data.scm" read-all))
+@(define srfi-data (with-input-from-file "data/srfi-data.scm" read-all))
 
 @(define (read-listing impl suffix)
    (let* ((impl (string-downcase (symbol->string impl)))
-          (filename (string-append "listings/" impl suffix ".scm")))
+          (filename (string-append "data/" impl suffix ".scm")))
      (with-input-from-file filename read-all)))
 
 @(define implementation-support
@@ -46,9 +47,9 @@
                (tag-as (lambda (tag)
                          (lambda (number)
                            (hash-set! srfis number tag)))))
+        (for-each (tag-as 'external) (read-listing impl "-external"))
         (for-each (tag-as 'head)     (read-listing impl "-head"))
         (for-each (tag-as 'release)  (read-listing impl ""))
-        ;; (for-each (tag-as 'external) (read-listing impl "-external"))
         (cons impl
               (map (lambda (number) (cons number (hash-ref srfis number)))
                    (sort (hash-keys srfis) <)))))
@@ -92,8 +93,9 @@
             (if (not supported)
                 (td class: 'no "\u2717")
                 (case supported
-                  ((release) (td class: 'release "\u2713"))
-                  ((head)    (td class: 'head    "\u2713"))
+                  ((release)  (td class: 'release  "\u2713"))
+                  ((head)     (td class: 'head     "\u2713"))
+                  ((external) (td class: 'external "\u2713"))
                   (else      (error "Huh?"))))))
         implementations)))))
 
@@ -107,9 +109,9 @@
     (title "SRFI Table"))
    (body
     (h1 "SRFI Table")
-    (p "Only includes SRFIs bundled in each implementation's"
-       " respective standard library. "
-       "Does not yet include third-party/external libraries.")
+    (p "Please submit your corrections, suggestions, ideas and requests to the "
+       (a href: "https://github.com/SchemeDoc/srfi-metadata"
+          (code "srfi-metadata")) " repo.")
     (br)
     (table
      (tr
@@ -119,7 +121,7 @@
      (tr
       (td class: 'head "\u2713") (td "Support not yet released"))
      (tr
-      (td class: 'external "\u2713") (td "Supported through third-party libraries"))
+      (td class: 'external "\u2713") (td "Supported through third-party libraries*"))
      (tr
       (td class: 'no "\u2717") (td "Unsupported")))
     (br)
@@ -127,10 +129,16 @@
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
      (apply tbody (map support-box srfi-data))
      (tfoot))
+    (p
+     (b "* On third-party libraries: ")
+     (a href: "https://people.csail.mit.edu/jaffer/SLIB.html" "SLIB") " and "
+     (a href: "http://snow-fort.org" "Snow Fort")
+     " provide portable third-party SRFI implementations for R5RS and R7RS Scheme respectively."
+     (br)
+     (a href: "https://github.com/arcfide/chez-srfi" (code "chez-srfi")) " is included as the "
+     (i "de facto") " SRFI implementation library for Chez Scheme and Loko Scheme"
+     " with broad R6RS compatibility.")
     (footer
      (p "Generated on "
         (parameterize ((date-display-format 'iso-8601))
-          (date->string (current-date))) ".")
-     (p "Submit your corrections and requests to "
-        (a href: "https://github.com/SchemeDoc/srfi-metadata"
-           "srfi-metadata repo") ".")))))
+          (date->string (current-date))) ".")))))

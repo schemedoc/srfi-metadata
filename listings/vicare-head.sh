@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '@ansrfi{[0-9]+}' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > vicare-head.scm
+	uniq > ../data/vicare-head.scm

@@ -9,4 +9,4 @@ curl --fail --silent --show-error --location \
 	grep -oE '^@item @code{srfi-[0-9]+} ' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > bigloo-head.scm
+	uniq > ../data/bigloo-head.scm
