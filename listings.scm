@@ -1,52 +1,77 @@
-(import (scheme base) (scheme char) (scheme file) (scheme write))
+(import (scheme base)
+        (scheme char)
+        (scheme file)
+        (scheme write)
+        (srfi 2)
+        (srfi 28))
 
-(define-record-type scheme (make-scheme name
-                                        github-user
-                                        github-repo
-                                        git-ref/head git-ref/release
-                                        filename contents)
-                    scheme?
-                    (name scheme-name)
-                    (github-user scheme-github-user)
-                    (github-repo scheme-github-repo)
-                    (git-ref/head scheme-git-ref/head)
-                    (git-ref/release scheme-git-ref/release)
-                    (filename scheme-filename)
-                    (contents scheme-contents))
+(define-record-type scheme
+  (make-scheme name host
+               user repo
+               git-ref/head
+               git-ref/release
+               filename contents)
+  scheme?
+  (name scheme-name)
+  (host scheme-host)
+  (user scheme-user)
+  ;; TODO: Add Bitbucket and cgit support
+  (repo scheme-repo)
+  (git-ref/head scheme-git-ref/head)
+  (git-ref/release scheme-git-ref/release)
+  (filename scheme-filename)
+  (contents scheme-contents))
 
 (define schemes
   (list
-
-   (make-scheme "bigloo"
-                "manuel-serrano" "bigloo" "master" "4.3e"
+   (make-scheme "bigloo" "github"
+                "manuel-serrano" "bigloo"
+                "master" "4.3h"
                 "manuals/srfi.texi" "^@item @code{srfi-[0-9]+} ")
 
-   (make-scheme "chibi"
-                "ashinn" "chibi-scheme" "master" "0.8"
+   (make-scheme "chibi" "github"
+                "ashinn" "chibi-scheme"
+                "master" "0.9.1"
                 "lib/srfi/[0-9]+.sld" #f)
 
-   (make-scheme "gambit"
-                "gambit" "gambit" "master" #f
+   (make-scheme "gambit" "github"
+                "gambit" "gambit"
+                "master" "v4.9.3"
                 "lib/srfi/[0-9]+" #f)
 
-   (make-scheme "gauche"
-                "shirok" "Gauche" "master" "release0_9_9"
+   (make-scheme "gauche" "github"
+                "shirok" "Gauche"
+                "master" "release0_9_9"
                 "src/srfis.scm" "^srfi-[0-9]+")
 
-   (make-scheme "gerbil"
-                "vyzo" "gerbil" "master" "v0.15.1"
+   (make-scheme "gerbil" "github"
+                "vyzo" "gerbil"
+                "master" "v0.16"
                 "doc/guide/srfi.md" "\\[SRFI +[0-9]+\\]")
 
-   (make-scheme "sagittarius"
-                "ktakashi" "sagittarius-scheme" "master" "version_0.9.7"
+   (make-scheme "kawa" "gitlab"
+                "kashell" "Kawa"
+                "master" "3.1.1"
+                "doc/kawa.texi" "^@uref{http://srfi.schemers.org/srfi-[0-9]+/srfi-[0-9]+.html, SRFI [0-9]+}: ")
+
+   (make-scheme "loko" "gitlab"
+                "weinholt" "loko"
+                "master" "v0.6.0"
+                "Documentation/manual/lib-std.texi" "^@code{\\(srfi :[0-9]+ ")
+
+   (make-scheme "sagittarius" "github"
+                "ktakashi" "sagittarius-scheme"
+                "master" "version_0.9.7"
                 "doc/srfi.scrbl" "\\(srfi :[0-9]+[ )]")
 
-   (make-scheme "stklos"
-                "egallesio" "STklos" "master" "stklos-1.50"
+   (make-scheme "stklos" "github"
+                "egallesio" "STklos"
+                "master" "stklos-1.50"
                 "doc/skb/srfi.stk" "^ +.?\\(?\\([0-9]+ +\\. \"")
 
-   (make-scheme "vicare"
-                "marcomaggi" "vicare" "master" "v0.4d1"
+   (make-scheme "vicare" "github"
+                "marcomaggi" "vicare"
+                "master" "v0.4d1.2"
                 "doc/srfi.texi" "@ansrfi{[0-9]+}")
 
    ))
@@ -56,63 +81,80 @@
 (define (shell-pipeline commands)
   (write-string (car commands))
   (for-each (lambda (command)
-              (displayln " |")
-              (display "    ")
+              (display " |\n\t")
               (display command))
             (cdr commands))
   (newline))
 
 (define (scheme-archive-url scm git-ref)
-  (string-append "https://github.com"
-                 "/" (scheme-github-user scm)
-                 "/" (scheme-github-repo scm)
-                 "/" "archive"
-                 "/" git-ref ".tar.gz"))
+  (apply format "https://~a.com/~a/~a/~a/~a.tar.gz"
+         (scheme-host scm)
+         (scheme-user scm)
+         (scheme-repo scm)
+         (cond
+          ((or (string=? (scheme-host scm) "github"))
+           (list "archive"
+                 git-ref))
+          ((string=? (scheme-host scm) "gitlab")
+           (list "-/archive"
+                 (if (string=? git-ref (scheme-git-ref/head scm))
+                     git-ref
+                     (string-append git-ref "/" (scheme-name scm) "-" git-ref)))))))
 
 (define (scheme-archive-filename scm git-ref)
-  (string-append (scheme-github-repo scm)
-                 "-"
-                 (if (and (>= (string-length git-ref) 2)
-                          (char=? #\v (string-ref git-ref 0))
-                          (char-numeric? (string-ref git-ref 1)))
-                     (substring git-ref 1 (string-length git-ref))
-                     git-ref)
-                 "/"
-                 (scheme-filename scm)))
+  (define archive-filename
+    ;; HACK: GitHub archives strip the #\v in the dirname in archive
+    (if (and (>= (string-length git-ref) 2)
+             (string=? (scheme-host scm) "github")
+             (char=? #\v (string-ref git-ref 0))
+             (char-numeric? (string-ref git-ref 1)))
+        (substring git-ref 1 (string-length git-ref))
+        git-ref))
+  (format "~a-~a/~a"
+          (scheme-repo scm)
+          ;; HACK: Workaround for GitLab's wonky "add hash to dirname" quirk
+          (if (string=? (scheme-host scm) "gitlab")
+              (string-append archive-filename "*")
+              archive-filename)
+          (scheme-filename scm)))
 
-(define (wri scm git-ref suffix)
-  (with-output-to-file (string-append "listings" "/"
-                                      (scheme-name scm) suffix ".sh")
+(define (write-listing scm git-ref suffix)
+  (define name (string-append (scheme-name scm) suffix))
+  (with-output-to-file
+      (string-append "listings/" name ".sh")
     (lambda ()
       (displayln "#!/bin/bash")
       (displayln "# Auto-generated by listings.scm")
       (displayln "set -eu -o pipefail")
       (displayln "cd \"$(dirname \"$0\")\"")
-      (if (not git-ref)
-          (shell-pipeline
-           `(,(string-append "printf '' >" (scheme-name scm) suffix ".scm")))
-          (shell-pipeline
-           `(,(string-append
-               "curl --fail --silent --show-error --location \\\n"
-               "    " (scheme-archive-url scm git-ref))
-             "gunzip"
-             ,@(if (not (scheme-contents scm))
-                   `("tar -tf -"
-                     ,(string-append
-                       "grep -oE "
-                       "'" (scheme-archive-filename scm git-ref) "'")
-                     "sed 's@%3a@@'")
-                   `(,(string-append
-                       "tar -xf - --to-stdout "
-                       "'" (scheme-archive-filename scm git-ref) "'")
-                     ,(string-append
-                       "grep -oE"
-                       " " "'" (scheme-contents scm) "'")))
+      (shell-pipeline
+       (if (not git-ref)
+           (list
+            (string-append "printf '' >" name ".scm"))
+           (append
+            (list
+             (string-append
+              "curl --fail --silent --show-error --location \\\n\t"
+              (scheme-archive-url scm git-ref))
+             "gunzip")
+            (if (not (scheme-contents scm))
+                (list "tar -tf -"
+                      (string-append
+                       "grep -oE '"
+                       (scheme-archive-filename scm git-ref) "'")
+                      "sed 's@%3a@@'")
+                (list (string-append
+                       "tar -xf - --to-stdout --wildcards '"
+                       (scheme-archive-filename scm git-ref) "'")
+                      (string-append
+                       "grep -oE '"
+                       (scheme-contents scm) "'")))
+            (list
              "grep -oE '[0-9]+'"
              "sort -g"
-             ,(string-append "uniq >" (scheme-name scm) suffix ".scm")))))))
+             (string-append "uniq > " name ".scm"))))))))
 
 (for-each (lambda (scm)
-            (wri scm (scheme-git-ref/head scm) "-head")
-            (wri scm (scheme-git-ref/release scm) ""))
+            (write-listing scm (scheme-git-ref/head scm) "-head")
+            (write-listing scm (scheme-git-ref/release scm) ""))
           schemes)
