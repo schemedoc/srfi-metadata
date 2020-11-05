@@ -36,21 +36,23 @@
 
 @(define (read-listing impl suffix)
    (let* ((impl (string-downcase (symbol->string impl)))
-          (filename (string-append "listings" "/" impl suffix ".scm")))
+          (filename (string-append "listings/" impl suffix ".scm")))
      (with-input-from-file filename read-all)))
 
 @(define implementation-support
-   (map (lambda (impl)
-          (cons impl
-                (let ((srfis (hash)))
-                  (define (tag-as tag)
-                    (lambda (number)
-                      (set! srfis (hash-set srfis number tag))))
-                  (for-each (tag-as 'head)    (read-listing impl "-head"))
-                  (for-each (tag-as 'release) (read-listing impl ""))
-                  (map (lambda (number) (cons number (hash-ref srfis number)))
-                       (sort (hash-keys srfis) <)))))
-        implementations))
+   (map
+    (lambda (impl)
+      (letrec ((srfis (make-hasheq))
+               (tag-as (lambda (tag)
+                         (lambda (number)
+                           (hash-set! srfis number tag)))))
+        (for-each (tag-as 'head)     (read-listing impl "-head"))
+        (for-each (tag-as 'release)  (read-listing impl ""))
+        ;; (for-each (tag-as 'external) (read-listing impl "-external"))
+        (cons impl
+              (map (lambda (number) (cons number (hash-ref srfis number)))
+                   (sort (hash-keys srfis) <)))))
+    implementations))
 
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
