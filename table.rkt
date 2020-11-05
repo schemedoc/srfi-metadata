@@ -56,6 +56,7 @@
    (string-append "table { table-layout: fixed; text-align: center; } "
                   "td.release { background-color: limegreen; } "
                   "td.head { background-color: green; } "
+                  "td.external { background-color: gold; } "
                   "td.no { background-color: orangered; } "
                   "th { border-right: 1px solid black; } "
                   "td.withdrawn { background-color: lightsalmon; } "
@@ -106,7 +107,20 @@
     (h1 "SRFI Table")
     (p "Only includes SRFIs bundled in each implementation's"
        " respective standard library. "
-       "Does not yet include third-party/external packages.")
+       "Does not yet include third-party/external libraries.")
+    (br)
+    (table
+     (tr
+      (td (b "Legend")) (td))
+     (tr
+      (td class: 'release "\u2713") (td "Supported in the latest version"))
+     (tr
+      (td class: 'head "\u2713") (td "Support not yet released"))
+     (tr
+      (td class: 'external "\u2713") (td "Supported through third-party libraries"))
+     (tr
+      (td class: 'no "\u2717") (td "Unsupported")))
+    (br)
     (table
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
      (apply tbody (map support-box srfi-data))
