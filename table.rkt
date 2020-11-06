@@ -59,11 +59,11 @@
 
 @(define CSS
    (string-append "table { table-layout: fixed; text-align: center; } "
+                  "th { background-color: white; border-right: 1px solid black; top: 0; position: sticky; } "
                   "td.release { background-color: limegreen; } "
                   "td.head { background-color: green; } "
                   "td.external { background-color: gold; } "
                   "td.no { background-color: orangered; } "
-                  "th { border-right: 1px solid black; } "
                   "td.withdrawn { background-color: lightsalmon; } "
                   "td.draft { background-color: powderblue; }"))
 
@@ -138,7 +138,7 @@
      " provide portable third-party SRFI implementations for R5RS and R7RS Scheme respectively."
      (br)
      (a href: "https://github.com/arcfide/chez-srfi" (code "chez-srfi")) " is included as the "
-     (i "de facto") " SRFI implementation library for Chez Scheme and Loko Scheme"
+     (i "de facto") " SRFI implementation library for Chez Scheme, IronScheme and Loko Scheme"
      " with broad R6RS compatibility.")
     (footer
      (p "Generated on "
