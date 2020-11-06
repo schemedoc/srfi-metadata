@@ -5,9 +5,8 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/gambit/gambit/archive/v4.9.3.tar.gz |
 	gunzip |
-	tar -tf - |
-	grep -oE 'gambit-4.9.3/lib/srfi/[0-9]+' |
-	sed 's@%3a@@' |
+	tar -xf - --to-stdout 'gambit-4.9.3/README' |
+	grep -oE '    - SRFI [0-9]+ ' |
 	grep -oE '[0-9]+' |
 	sort -g |
 	uniq > ../data/gambit.scm

@@ -33,10 +33,10 @@
                 "master" "0.9.1"
                 "lib/srfi/[0-9]+.sld" #f)
 
-   (make-scheme "gambit" "github"
-                "gambit" "gambit"
-                "master" "v4.9.3"
-                "lib/srfi/[0-9]+" #f)
+   ;; (make-scheme "gambit" "github"
+   ;;              "gambit" "gambit"
+   ;;              "master" "v4.9.3"
+   ;;              "lib/srfi/[0-9]+" #f)
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"
