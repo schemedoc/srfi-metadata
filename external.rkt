@@ -21,7 +21,9 @@
        (string->number (substring file 3)))
      <))
   (with-output-to-file "data/chez-external.scm" #:exists 'replace
-                       (thunk (for-each displayln results)))
+    (thunk (for-each displayln results)))
+  (with-output-to-file "data/ironscheme-external.scm" #:exists 'replace
+    (thunk (for-each displayln results)))
   (with-output-to-file "data/loko-external.scm" #:exists 'replace
     (thunk (for-each displayln results)
            (displayln 160))))

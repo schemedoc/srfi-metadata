@@ -73,6 +73,11 @@
                 "master" "stklos-1.50"
                 "doc/skb/srfi.stk" "^ +.?\\(?\\([0-9]+ +\\. \"")
 
+   (make-scheme "unsyntax" "gitlab"
+                "nieper" "unsyntax"
+                "master" "v0.0.3"
+                "src/srfi/[0-9]+.s.?.?" #f)
+
    (make-scheme "vicare" "github"
                 "marcomaggi" "vicare"
                 "master" "v0.4d1.2"
@@ -118,7 +123,8 @@
           (scheme-repo scm)
           ;; HACK: Workaround for GitLab's wonky "add hash to dirname" quirk
           (if (string=? (scheme-host scm) "gitlab")
-              (string-append archive-filename "*")
+              (string-append archive-filename
+                             (if (scheme-contents scm) "*" ".*"))
               archive-filename)
           (scheme-filename scm)))
 

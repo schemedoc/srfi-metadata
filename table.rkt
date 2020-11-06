@@ -19,6 +19,7 @@
      Gauche
      Gerbil
      Guile
+     Iron
      Kawa
      Larceny
      Loko
@@ -27,7 +28,8 @@
      Sagittarius
      Scheme48
      STKlos
-     TinyScheme
+     Tiny
+     Unsyntax
      Vicare
      Ypsilon
      SLIB
