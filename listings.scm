@@ -2,7 +2,6 @@
         (scheme char)
         (scheme file)
         (scheme write)
-        (srfi 2)
         (srfi 28))
 
 (define-record-type scheme
@@ -15,7 +14,7 @@
   (name scheme-name)
   (host scheme-host)
   (user scheme-user)
-  ;; TODO: Add Bitbucket and cgit support
+  ;; TODO: Add Bitbucket and Savannah support
   (repo scheme-repo)
   (git-ref/head scheme-git-ref/head)
   (git-ref/release scheme-git-ref/release)
@@ -63,6 +62,11 @@
                 "ktakashi" "sagittarius-scheme"
                 "master" "version_0.9.7"
                 "doc/srfi.scrbl" "\\(srfi :[0-9]+[ )]")
+
+   (make-scheme "racket" "github"
+                "racket" "srfi"
+                "master" "v7.9"
+                "srfi-lib/srfi/%3a[0-9]+.rkt" #f)
 
    (make-scheme "stklos" "github"
                 "egallesio" "STklos"

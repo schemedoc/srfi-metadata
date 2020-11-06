@@ -3,11 +3,11 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-	https://github.com/racket/srfi/archive/v7.9.tar.gz |
+	https://github.com/racket/srfi/archive/master.tar.gz |
 	gunzip |
 	tar -tf - |
-	grep -oE 'srfi-7.9/srfi-lib/srfi/%3a[0-9]+.rkt' |
+	grep -oE 'srfi-master/srfi-lib/srfi/%3a[0-9]+.rkt' |
 	sed 's@%3a@@' |
 	grep -oE '[0-9]+' |
 	sort -g |
-	uniq > ../data/racket.scm
+	uniq > ../data/racket-head.scm
