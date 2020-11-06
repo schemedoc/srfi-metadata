@@ -10,4 +10,4 @@ curl --fail --silent --show-error \
     grep -oE '[0-9]+.scm' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >ypsilon.scm
+    uniq > ../data/ypsilon.scm

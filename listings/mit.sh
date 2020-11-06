@@ -6,4 +6,4 @@ curl --fail --silent --show-error \
     grep -ioE "srfi[ -][0-9]+" |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >mit.scm
+    uniq > ../data/mit.scm

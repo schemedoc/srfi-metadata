@@ -9,4 +9,4 @@ curl --fail --silent --show-error \
     tr ' ' '\n' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >scheme48.scm
+    uniq > ../data/scheme48.scm

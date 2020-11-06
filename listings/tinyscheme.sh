@@ -6,4 +6,4 @@ curl --fail --silent --show-error \
     grep -oE 'srfi-[0-9]+ ' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >tinyscheme.scm
+    uniq > ../data/tinyscheme.scm

@@ -6,4 +6,4 @@ curl --fail --silent --show-error \
     grep -E '^\* SRFI-[0-9]+::' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq >guile.scm
+    uniq > ../data/guile.scm
