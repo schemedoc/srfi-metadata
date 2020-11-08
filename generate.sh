@@ -13,4 +13,5 @@
 ./table.sh
 
 # View table
+echo "Done!"
 xdg-open table.html

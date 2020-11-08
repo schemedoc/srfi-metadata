@@ -12,14 +12,16 @@
 (define (not-space? str)
   (not (string=? str " ")))
 
-(displayln "Generating listings for Snow Fort...")
+(displayln "Scraping listings for")
+
+(displayln "Snow Fort...")
 ;; Snow Fort repo is in SXML format. We can directly query it with SXPath.
 (let ((repo (read (get-pure-port (string->url "https://snow-fort.org/pkg/repo"))))
       (query (sxpath '(package library name srfi))))
   (with-output-to-file "data/snow-fort.scm" #:exists 'replace
     (thunk (for-each displayln (sort (remove-duplicates (map cadr (query repo))) <)))))
 
-(displayln "Generating listings for chez-srfi...")
+(displayln "chez-srfi...")
 ;; GitHub API returns data in JSON format, which we can `read' into `hasheq's of lists.
 (let ((repo (query-github "/repos/arcfide/chez-srfi/contents")))
   (define results
@@ -31,13 +33,13 @@
      <))
   (with-output-to-file "data/chez-external.scm" #:exists 'replace
     (thunk (for-each displayln results)))
-  (with-output-to-file "data/ironscheme-external.scm" #:exists 'replace
+  (with-output-to-file "data/iron-external.scm" #:exists 'replace
     (thunk (for-each displayln results)))
   (with-output-to-file "data/loko-external.scm" #:exists 'replace
     (thunk (for-each displayln results)
            (displayln 160))))
 
-(displayln "Generating listings for CHICKEN...")
+(displayln "CHICKEN...")
 ;; GitHub API returns content in base64 format embedded in a JSON object.
 (let* ((response (query-github "/repos/diamond-lizard/chicken-srfi-support/contents/srfi-table.org"))
        (table (string-split (base64-decode-string (hash-ref response 'content)) "\n"))
@@ -57,3 +59,5 @@
       (loop (cddr lines))))
   (close-output-port chicken-port)
   (close-output-port egg-port))
+
+(displayln "Scraped.\n")
