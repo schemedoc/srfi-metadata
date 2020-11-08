@@ -1,6 +1,5 @@
 * SRFI Metadata
 This repository contains a collection of parseable [[https://srfi.schemers.org][SRFI]] metadata.
-Currently doesn't generate data about third-party SRFI libraries.
 Contributions welcome!
 
 You can view the table [[http://htmlpreview.github.io/?https://github.com/schemedoc/srfi-metadata/blob/master/table.html][here]].

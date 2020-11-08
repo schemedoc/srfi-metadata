@@ -139,7 +139,10 @@
      (br)
      (a href: "https://github.com/arcfide/chez-srfi" (code "chez-srfi")) " is included as the "
      (i "de facto") " SRFI implementation library for Chez Scheme, IronScheme and Loko Scheme"
-     " with broad R6RS compatibility.")
+     " with broad R6RS compatibility."
+     (br)
+     "CHICKEN Scheme provides third-party SRFI libraries through its package manager, "
+     "in the form of " (a href: "https://wiki.call-cc.org/eggs" "eggs") ".")
     (footer
      (p "Generated on "
         (parameterize ((date-display-format 'iso-8601))
