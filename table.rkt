@@ -57,10 +57,23 @@
                    (sort (hash-keys srfis) <)))))
     implementations))
 
+@(define dark-mode-style
+   (string-append "@media screen {"
+                  " @media (prefers-color-scheme: dark) {"
+                  " body { color: white; background-color: #202020; }"
+                  " th { background-color: #202020; border-right: 1px solid white; }"
+                  " a { color: aqua; }"
+                  " table a { color: indigo; }"
+                  " table.legend td.text { background-color: #202020; text: white; }"
+                  " } }"))
+
 @(define CSS
    ;; Colours adapted from https://doi.org/10.1038/nmeth.1618
    (string-append "table { table-layout: fixed; text-align: center; } "
+                  "table.main { margin-left: 5%; margin-right: auto; } "
+                  "table.legend { margin-left: auto; margin-right: 5%; } "
                   "th { background-color: white; border-right: 1px solid black; top: 0; position: sticky; } "
+                  "td { background-color: white; }"
                   ;; Sky blue
                   "td.release { background-color: #56B4E9; } "
                   ;; Blue
@@ -72,7 +85,8 @@
                   ;; Vermillion
                   "td.withdrawn { background-color: #E69F00; } "
                   ;; Powder blue
-                  "td.draft { background-color: #B0E0E6; }"))
+                  "td.draft { background-color: #B0E0E6; } "
+                  dark-mode-style))
 
 @(define (srfi-url number)
    (let ((number (number->string number)))
@@ -122,19 +136,19 @@
        (a href: "https://github.com/SchemeDoc/srfi-metadata"
           (code "srfi-metadata")) " repo.")
     (br)
-    (table
+    (table class: 'legend
      (tr
-      (td (b "Legend")) (td))
+      (td class: 'text (b "Legend")) (td class: 'text))
      (tr
-      (td class: 'release "\u2713") (td "Supported in the latest version"))
+      (td class: 'release "\u2713")  (td class: 'text "Supported in the latest version"))
      (tr
-      (td class: 'head "\u2713") (td "Support not yet released"))
+      (td class: 'head "\u2713")     (td class: 'text "Support not yet released"))
      (tr
-      (td class: 'external "\u2713") (td "Supported through third-party libraries*"))
+      (td class: 'external "\u2713") (td class: 'text "Supported through third-party libraries*"))
      (tr
-      (td class: 'no "\u2717") (td "Unsupported")))
+      (td class: 'no "\u2717")       (td class: 'text "Unsupported")))
     (br)
-    (table
+    (table class: 'main
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
      (apply tbody (map support-box srfi-data))
      (tfoot))
