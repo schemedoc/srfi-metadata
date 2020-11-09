@@ -58,14 +58,21 @@
     implementations))
 
 @(define CSS
+   ;; Colours adapted from https://doi.org/10.1038/nmeth.1618
    (string-append "table { table-layout: fixed; text-align: center; } "
                   "th { background-color: white; border-right: 1px solid black; top: 0; position: sticky; } "
-                  "td.release { background-color: limegreen; } "
-                  "td.head { background-color: green; } "
-                  "td.external { background-color: gold; } "
-                  "td.no { background-color: orangered; } "
-                  "td.withdrawn { background-color: lightsalmon; } "
-                  "td.draft { background-color: powderblue; }"))
+                  ;; Sky blue
+                  "td.release { background-color: #56B4E9; } "
+                  ;; Blue
+                  "td.head { background-color: #0072B2; } "
+                  ;; Bluish green
+                  "td.external { background-color: #009E73; } "
+                  ;; Reddish purple
+                  "td.no { background-color: #CC79A7; } "
+                  ;; Vermillion
+                  "td.withdrawn { background-color: #E69F00; } "
+                  ;; Powder blue
+                  "td.draft { background-color: #B0E0E6; }"))
 
 @(define (srfi-url number)
    (let ((number (number->string number)))
