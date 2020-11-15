@@ -1,17 +1,13 @@
 #!/bin/sh
-
-# Update SRFI info
-./srfi-data.sh
-
-# Generate and run scrapers
-./listings.sh
-
-# Scrape external libraries
-./external.sh
-
-# Generate table from above data
-./table.sh
-
-# View table
+set -eu
+cd "$(dirname "$0")"
+./srfi-data.sh       # Update SRFI info
+echo
+./listings.sh        # Generate and run scrapers
+echo
+./external.sh        # Scrape external libraries
+echo
+./table.sh           # Generate table from above data
+echo
 echo "Done!"
-xdg-open table.html
+xdg-open table.html  # View table

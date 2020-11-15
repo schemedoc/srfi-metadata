@@ -3,8 +3,8 @@ set -eu
 cd "$(dirname "$0")"
 echo "Generating scraper scripts..."
 gosh listings.scm
-echo -e "Generated.\n"
-
+echo "Generated."
+echo
 echo "Scraping listing data..."
 pushd listings > /dev/null
 for f in *.sh; do
@@ -12,4 +12,4 @@ for f in *.sh; do
     ./"$f";
 done
 popd > /dev/null
-echo -e "Scraped.\n"
+echo "Scraped."
