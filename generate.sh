@@ -10,4 +10,4 @@ echo
 ./table.sh           # Generate table from above data
 echo
 echo "Done!"
-xdg-open table.html  # View table
+${OPEN:-xdg-open} table.html  # View table
