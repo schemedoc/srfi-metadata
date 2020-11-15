@@ -142,7 +142,7 @@
      (tr
       (td class: 'release "\u2713")  (td class: 'text "Supported in the latest version"))
      (tr
-      (td class: 'head "\u2713")     (td class: 'text "Support not yet released"))
+      (td class: 'head "\u2713")     (td class: 'text "Supported in pre-release version"))
      (tr
       (td class: 'external "\u2713") (td class: 'text "Supported through third-party libraries*"))
      (tr
