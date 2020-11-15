@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/racket/srfi/archive/v7.9.tar.gz |
 	gunzip |
-	tar -tf - |
+	${TAR:-tar} -tf - |
 	grep -oE 'srfi-7.9/srfi-lib/srfi/%3a[0-9]+.rkt' |
 	sed 's@%3a@@' |
 	grep -oE '[0-9]+' |

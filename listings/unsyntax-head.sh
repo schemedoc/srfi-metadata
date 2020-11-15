@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://gitlab.com/nieper/unsyntax/-/archive/master.tar.gz |
 	gunzip |
-	tar -tf - |
+	${TAR:-tar} -tf - |
 	grep -oE 'unsyntax-master.*/src/srfi/[0-9]+.s.?.?' |
 	sed 's@%3a@@' |
 	grep -oE '[0-9]+' |

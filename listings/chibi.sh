@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/ashinn/chibi-scheme/archive/0.9.1.tar.gz |
 	gunzip |
-	tar -tf - |
+	${TAR:-tar} -tf - |
 	grep -oE 'chibi-scheme-0.9.1/lib/srfi/[0-9]+.sld' |
 	sed 's@%3a@@' |
 	grep -oE '[0-9]+' |

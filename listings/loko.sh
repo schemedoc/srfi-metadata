@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://gitlab.com/weinholt/loko/-/archive/v0.6.0/loko-v0.6.0.tar.gz |
 	gunzip |
-	tar -xf - --to-stdout --wildcards 'loko-v0.6.0*/Documentation/manual/lib-std.texi' |
+	${TAR:-tar} -xf - --to-stdout --wildcards 'loko-v0.6.0*/Documentation/manual/lib-std.texi' |
 	grep -oE '^@code{\(srfi :[0-9]+ ' |
 	grep -oE '[0-9]+' |
 	sort -g |

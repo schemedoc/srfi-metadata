@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/ktakashi/sagittarius-scheme/archive/version_0.9.7.tar.gz |
 	gunzip |
-	tar -xf - --to-stdout --wildcards 'sagittarius-scheme-version_0.9.7/doc/srfi.scrbl' |
+	${TAR:-tar} -xf - --to-stdout --wildcards 'sagittarius-scheme-version_0.9.7/doc/srfi.scrbl' |
 	grep -oE '\(srfi :[0-9]+[ )]' |
 	grep -oE '[0-9]+' |
 	sort -g |

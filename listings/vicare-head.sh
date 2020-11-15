@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/marcomaggi/vicare/archive/master.tar.gz |
 	gunzip |
-	tar -xf - --to-stdout --wildcards 'vicare-master/doc/srfi.texi' |
+	${TAR:-tar} -xf - --to-stdout --wildcards 'vicare-master/doc/srfi.texi' |
 	grep -oE '@ansrfi{[0-9]+}' |
 	grep -oE '[0-9]+' |
 	sort -g |
