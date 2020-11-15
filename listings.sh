@@ -6,10 +6,10 @@ gosh listings.scm
 echo "Generated."
 echo
 echo "Scraping listing data..."
-pushd listings > /dev/null
+cd listings
 for f in *.sh; do
     echo "$f";
     ./"$f";
 done
-popd > /dev/null
+cd ..
 echo "Scraped."
