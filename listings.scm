@@ -148,13 +148,13 @@
               (scheme-archive-url scm git-ref))
              "gunzip")
             (if (not (scheme-contents scm))
-                (list "tar -tf -"
+                (list "${TAR:-tar} -tf -"
                       (string-append
                        "grep -oE '"
                        (scheme-archive-filename scm git-ref) "'")
                       "sed 's@%3a@@'")
                 (list (string-append
-                       "tar -xf - --to-stdout --wildcards '"
+                       "${TAR:-tar} -xf - --to-stdout --wildcards '"
                        (scheme-archive-filename scm git-ref) "'")
                       (string-append
                        "grep -oE '"
