@@ -60,4 +60,4 @@
   (close-output-port chicken-port)
   (close-output-port egg-port))
 
-(displayln "Scraped.\n")
+(displayln "Scraped.")
