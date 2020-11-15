@@ -6,7 +6,7 @@ curl --fail --silent --show-error --location \
 	https://gitlab.com/kashell/Kawa/-/archive/master.tar.gz |
 	gunzip |
 	${TAR:-tar} -xf - --to-stdout --wildcards 'Kawa-master*/doc/kawa.texi' |
-	grep -oE '^@uref{http://srfi.schemers.org/srfi-[0-9]+.*, SRFI[ -][0-9]+}: ' |
+	grep -oE '^@uref{http://srfi.schemers.org/srfi-[0-9]+.*, ?SRFI[ -][0-9]+}:' |
 	grep -oE '[0-9]+' |
 	sort -g |
 	uniq > ../data/kawa-head.scm

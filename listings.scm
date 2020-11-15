@@ -51,7 +51,7 @@
    (make-scheme "kawa" "gitlab"
                 "kashell" "Kawa"
                 "master" "3.1.1"
-                "doc/kawa.texi" "^@uref{http://srfi.schemers.org/srfi-[0-9]+.*, SRFI[ -][0-9]+}: ")
+                "doc/kawa.texi" "^@uref{http://srfi.schemers.org/srfi-[0-9]+.*, ?SRFI[ -][0-9]+}:")
 
    (make-scheme "loko" "gitlab"
                 "weinholt" "loko"
