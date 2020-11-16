@@ -96,15 +96,16 @@
 
 (define (get-chicken-external-srfis)
   (sort
-   (filter-map
+   (append-map
     (lambda (egg)
       (let ((name (symbol->string (car egg))))
-        (cond ((string=? name "vector-lib") 43)
-              ((string=? name "box") 111)
-              (else
-               (and (string-prefix? name "srfi-")
-                    (string->number
-                     (substring name (string-length "srfi-"))))))))
+        (cond ((string=? name "box") '(111))
+              ((string=? name "srfi-69") '(69 90))
+              ((string=? name "vector-lib") '(43))
+              ((and (string-prefix? name "srfi-")
+                    (string->number (substring name (string-length "srfi-"))))
+               => list)
+              (else '()))))
     (with-input-from-string
         (command->string
          "curl"
