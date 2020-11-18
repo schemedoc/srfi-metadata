@@ -84,6 +84,8 @@
                   "td.no { background-color: #CC79A7; } "
                   ;; Vermillion
                   "td.withdrawn { background-color: #E69F00; } "
+                  ;; Coral
+                  "td.superseded { background-color: #FF7F50; } "
                   ;; Powder blue
                   "td.draft { background-color: #B0E0E6; } "
                   dark-mode-style))
@@ -99,7 +101,9 @@
      (let ((pair (assoc key alist)))
        (and pair (cdr pair))))
    (let* ((number (cadr (assoc 'number srfi)))
-          (status (cadr (assoc 'status srfi)))
+          (status (if (member 'superseded (cdr (assoc 'keywords srfi)))
+                      'superseded
+                      (cadr (assoc 'status srfi))))
           (title  (cadr (assoc 'title  srfi)))
           (url (srfi-url number)))
      (tr
