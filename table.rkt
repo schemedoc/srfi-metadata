@@ -168,6 +168,9 @@
      (br)
      "CHICKEN Scheme provides third-party SRFI libraries through its package manager, "
      "in the form of " (a href: "https://wiki.call-cc.org/eggs" "eggs") ".")
+    (p
+     (b "** Disclaimer: ")
+     "The responsibility for stating that a SRFI is supported is on the Scheme implementation developers.")
     (footer
      (p "Generated on "
         (parameterize ((date-display-format 'iso-8601))
