@@ -144,11 +144,11 @@
      (tr
       (td class: 'text (b "Legend")) (td class: 'text))
      (tr
-      (td class: 'release "\u2713")  (td class: 'text "Supported in the latest version"))
+      (td class: 'release "\u2713")  (td class: 'text "Supported in latest release"))
      (tr
       (td class: 'head "\u2713")     (td class: 'text "Supported in pre-release version"))
      (tr
-      (td class: 'external "\u2713") (td class: 'text "Supported through third-party libraries*"))
+      (td class: 'external "\u2713") (td class: 'text "Supported by third-party library*"))
      (tr
       (td class: 'no "\u2717")       (td class: 'text "Unsupported")))
     (br)
