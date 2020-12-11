@@ -69,7 +69,8 @@
 
 @(define CSS
    ;; Colours adapted from https://doi.org/10.1038/nmeth.1618
-   (string-append "table { table-layout: fixed; text-align: center; } "
+   (string-append "html { font-family: sans-serif; } "
+                  "table { table-layout: fixed; text-align: center; } "
                   "table.main { margin-left: 5%; margin-right: auto; } "
                   "table.legend { margin-left: auto; margin-right: 5%; } "
                   "th { background-color: white; border-right: 1px solid black; top: 0; position: sticky; } "
