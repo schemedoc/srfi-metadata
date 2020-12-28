@@ -40,7 +40,7 @@
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"
-                "master" "release0_9_9"
+                "master" "release0_9_10"
                 "src/srfis.scm" "^srfi-[0-9]+")
 
    (make-scheme "gerbil" "github"

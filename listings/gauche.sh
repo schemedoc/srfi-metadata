@@ -3,9 +3,9 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-	https://github.com/shirok/Gauche/archive/release0_9_9.tar.gz |
+	https://github.com/shirok/Gauche/archive/release0_9_10.tar.gz |
 	gunzip |
-	${TAR:-tar} -xf - --to-stdout --wildcards 'Gauche-release0_9_9/src/srfis.scm' |
+	${TAR:-tar} -xf - --to-stdout --wildcards 'Gauche-release0_9_10/src/srfis.scm' |
 	grep -oE '^srfi-[0-9]+' |
 	grep -oE '[0-9]+' |
 	sort -g |
