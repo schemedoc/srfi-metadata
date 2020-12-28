@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
 	https://github.com/egallesio/STklos/archive/master.tar.gz |
 	gunzip |
-	${TAR:-tar} -xf - --to-stdout --wildcards 'STklos-master/doc/skb/srfi.stk' |
-	grep -oE '^ +.?\(?\([0-9]+ +\. "' |
+	${TAR:-tar} -xf - --to-stdout --wildcards 'STklos-master/SUPPORTED-SRFIS' |
+	grep -oE 'SRFI-[0-9]+:' |
 	grep -oE '[0-9]+' |
 	sort -g |
 	uniq > ../data/stklos-head.scm
