@@ -70,7 +70,7 @@
 
    (make-scheme "stklos" "github"
                 "egallesio" "STklos"
-                "master" "stklos-1.50"
+                "master" "stklos-1.60"
                 "SUPPORTED-SRFIS" "SRFI-[0-9]+:")
 
    (make-scheme "unsyntax" "gitlab"
