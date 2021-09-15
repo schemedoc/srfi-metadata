@@ -7,7 +7,7 @@ curl --fail --silent --show-error --location \
 	gunzip |
 	${TAR:-tar} -tf - |
 	grep -oE 'unsyntax-v0.0.3.*/src/srfi/[0-9]+.s.?.?' |
-	sed 's@%3a@@' |
+	sed 's/unsyntax-master.*src//' |
 	grep -oE '[0-9]+' |
 	sort -g |
 	uniq > ../data/unsyntax.scm
