@@ -3,6 +3,7 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 {
+    echo 15
     curl --location --fail --silent --show-error \
         https://github.com/egallesio/STklos/archive/stklos-1.60.tar.gz |
         gunzip |
