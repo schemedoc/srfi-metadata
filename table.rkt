@@ -73,7 +73,8 @@
                   "table { table-layout: fixed; text-align: center; } "
                   "table.main { margin-left: 5%; margin-right: auto; } "
                   "table.legend { margin-left: auto; margin-right: 5%; } "
-                  "th { background-color: white; border-right: 1px solid black; top: 0; position: sticky; } "
+                  "table.legend td.text { text-align: left; } "
+                  "th { background-color: white; top: 0; position: sticky; } "
                   "td { background-color: white; }"
                   ;; Sky blue
                   "td.release { background-color: #56B4E9; } "
@@ -98,7 +99,10 @@
                     "/srfi-" number
                     "/srfi-" number ".html")))
 
-@(define (support-box srfi)
+@(define (srfi-table-heading-row)
+   (apply (compose thead tr) (map th `(SRFI ,@implementations SRFI))))
+
+@(define (srfi-table-row srfi)
    (define (assoc? key alist)
      (let ((pair (assoc key alist)))
        (and pair (cdr pair))))
@@ -108,25 +112,24 @@
                       (cadr (assoc 'status srfi))))
           (title  (cadr (assoc 'title  srfi)))
           (url (srfi-url number)))
+     (define status-td (td class: status (a href: url number)))
      (tr
       class: number
       title: (~a title " [" status "]")
-      (cons
-       (td
-        class: status
-        (a href: url number))
-       (map
-        (lambda (implementation)
-          (let ((supported (assoc? number (assoc? implementation
-                                                  implementation-support))))
-            (if (not supported)
-                (td class: 'no)  ; "\u2717"
-                (case supported
-                  ((release)  (td class: 'release  "\u2713"))
-                  ((head)     (td class: 'head     "\u2713"))
-                  ((external) (td class: 'external "\u2713"))
-                  (else      (error "Huh?"))))))
-        implementations)))))
+      status-td
+      (map
+       (lambda (implementation)
+         (let ((supported (assoc? number (assoc? implementation
+                                                 implementation-support))))
+           (if (not supported)
+               (td class: 'no)  ; "\u2717"
+               (case supported
+                 ((release)  (td class: 'release  "\u2713"))
+                 ((head)     (td class: 'head     "\u2713"))
+                 ((external) (td class: 'external "\u2713"))
+                 (else       (error "Huh?"))))))
+       implementations)
+      status-td)))
 
 @(list
   (doctype 'html)
@@ -144,17 +147,21 @@
     (br)
     (table class: 'legend
      (tr
-      (td class: 'text (b "Legend")) (td class: 'text))
+      (td class: 'text (b "Legend"))
+      (td class: 'text))
      (tr
-      (td class: 'release "\u2713")  (td class: 'text "Supported in latest release"))
+      (td class: 'release "\u2713")
+      (td class: 'text "Supported in latest release"))
      (tr
-      (td class: 'head "\u2713")     (td class: 'text "Supported in pre-release version"))
+      (td class: 'head "\u2713")
+      (td class: 'text "Supported in pre-release version"))
      (tr
-      (td class: 'external "\u2713") (td class: 'text "Supported by third-party library*")))
+      (td class: 'external "\u2713")
+      (td class: 'text "Supported by third-party library*")))
     (br)
     (table class: 'main
-     (apply (compose thead tr) (map th (cons 'SRFI implementations)))
-     (apply tbody (map support-box srfi-data))
+     (srfi-table-heading-row)
+     (apply tbody (map srfi-table-row srfi-data))
      (tfoot))
     (p
      (b "* On third-party libraries: ")
