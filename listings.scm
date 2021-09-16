@@ -96,7 +96,7 @@
                 "master" "stklos-1.60"
                 "SUPPORTED-SRFIS"
                 "SRFI-[0-9]+:"
-                '())
+                '(15))
 
    (make-scheme "unsyntax" "gitlab"
                 "nieper" "unsyntax"
