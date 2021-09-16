@@ -175,9 +175,9 @@
               (else
                (disp tab tab "${TAR:-tar} -xf - --to-stdout --wildcards '"
                      (scheme-archive-filename scm git-ref) "' |")
-               (disp tab tab "grep -oE '" (scheme-contents scm) "'")))
-        (disp "} | grep -oE '[0-9]+' | sort -g | uniq"
-              " >../data/" name ".scm")))))
+               (disp tab tab "grep -oE '" (scheme-contents scm) "'"))))
+      (disp "} | grep -oE '[0-9]+' | sort -g | uniq"
+            " >../data/" name ".scm"))))
 
 (for-each (lambda (scm)
             (write-listing scm (scheme-git-ref/head scm) "-head")
