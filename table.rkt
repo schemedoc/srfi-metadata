@@ -82,7 +82,8 @@
                   ;; Bluish green
                   "td.external { background-color: #009E73; } "
                   ;; Reddish purple
-                  "td.no { background-color: #CC79A7; } "
+                  ;;"td.no { background-color: #CC79A7; } "
+                  "td.no { background-color: transparent; }"
                   ;; Vermillion
                   "td.withdrawn { background-color: #E69F00; } "
                   ;; Coral
@@ -119,7 +120,7 @@
           (let ((supported (assoc? number (assoc? implementation
                                                   implementation-support))))
             (if (not supported)
-                (td class: 'no "\u2717")
+                (td class: 'no)  ; "\u2717"
                 (case supported
                   ((release)  (td class: 'release  "\u2713"))
                   ((head)     (td class: 'head     "\u2713"))
@@ -149,9 +150,7 @@
      (tr
       (td class: 'head "\u2713")     (td class: 'text "Supported in pre-release version"))
      (tr
-      (td class: 'external "\u2713") (td class: 'text "Supported by third-party library*"))
-     (tr
-      (td class: 'no "\u2717")       (td class: 'text "Unsupported")))
+      (td class: 'external "\u2713") (td class: 'text "Supported by third-party library*")))
     (br)
     (table class: 'main
      (apply (compose thead tr) (map th (cons 'SRFI implementations)))
