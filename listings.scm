@@ -86,8 +86,8 @@
 
    (make-scheme "racket" "github"
                 "racket" "srfi"
-                "master" "v7.9"
-                "srfi-lib/srfi/%3a[0-9]+.rkt"
+                "master" "v8.2"
+                "srfi-lib/srfi/[%a0-9]*"
                 #f
                 '())
 
@@ -103,7 +103,7 @@
                 "master" "v0.0.3"
                 "src/srfi/[0-9]+.s.?.?"
                 #f
-                '())
+                '(0 7 46))
 
    (make-scheme "vicare" "github"
                 "marcomaggi" "vicare"
@@ -168,9 +168,8 @@
         (disp tab tab "gunzip |")
         (cond ((not (scheme-contents scm))
                (disp tab tab "${TAR:-tar} -tf - |")
-               (disp tab tab "grep -oE '"
-                     (scheme-archive-filename scm git-ref) "' |")
                (disp tab tab "sed 's@[^/]*/@@' |")
+               (disp tab tab "grep -oE '" (scheme-filename scm) "' |")
                (disp tab tab "sed 's@%3a@@'"))
               (else
                (disp tab tab "${TAR:-tar} -xf - --to-stdout --wildcards '"

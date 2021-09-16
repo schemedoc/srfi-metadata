@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
         https://github.com/racket/srfi/archive/master.tar.gz |
         gunzip |
         ${TAR:-tar} -tf - |
-        grep -oE 'srfi-master/srfi-lib/srfi/%3a[0-9]+.rkt' |
         sed 's@[^/]*/@@' |
+        grep -oE 'srfi-lib/srfi/[%a0-9]*' |
         sed 's@%3a@@'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/racket-head.scm

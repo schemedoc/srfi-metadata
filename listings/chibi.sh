@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
         https://github.com/ashinn/chibi-scheme/archive/0.9.1.tar.gz |
         gunzip |
         ${TAR:-tar} -tf - |
-        grep -oE 'chibi-scheme-0.9.1/lib/srfi/[0-9]+.sld' |
         sed 's@[^/]*/@@' |
+        grep -oE 'lib/srfi/[0-9]+.sld' |
         sed 's@%3a@@'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/chibi.scm
