@@ -6,8 +6,7 @@ curl --fail --silent --show-error -L \
     gunzip |
     tar -tf - |
     sed 's@%3a@@' |
-    grep sitelib/srfi/ |
-    grep -oE '[0-9]+.scm' |
+    grep -oE 'sitelib/srfi/[0-9]+.scm' |
     grep -oE '[0-9]+' |
     sort -g |
     uniq > ../data/ypsilon.scm
