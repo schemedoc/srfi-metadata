@@ -6,6 +6,6 @@ cd "$(dirname "$0")"
     curl --location --fail --silent --show-error \
         https://github.com/ktakashi/sagittarius-scheme/archive/master.tar.gz |
         gunzip |
-        ${TAR:-tar} -xf - --to-stdout --wildcards 'sagittarius-scheme-master/doc/srfi.scrbl' |
-        grep -oE '\(srfi :[0-9]+[ )]'
+        ${TAR:-tar} -xf - --to-stdout --wildcards 'sagittarius-scheme-master/doc/srfi.md' |
+        grep -oE '\[SRFI-[0-9]+\]'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/sagittarius-head.scm
