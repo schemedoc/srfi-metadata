@@ -146,18 +146,36 @@
           (code "srfi-metadata")) " repo.")
     (br)
     (table class: 'legend
-     (tr
-      (td class: 'text (b "Legend"))
-      (td class: 'text))
-     (tr
-      (td class: 'release "\u2713")
-      (td class: 'text "Supported in latest release"))
-     (tr
-      (td class: 'head "\u2713")
-      (td class: 'text "Supported in pre-release version"))
-     (tr
-      (td class: 'external "\u2713")
-      (td class: 'text "Supported by third-party library*")))
+    (tr
+     (td
+      (tr
+       (td class: 'text (b "Support"))
+       (td class: 'text))
+      (tr
+       (td class: 'release "\u2713")
+       (td class: 'text "Supported in latest release"))
+      (tr
+       (td class: 'head "\u2713")
+       (td class: 'text "Supported in pre-release version"))
+      (tr
+       (td class: 'external "\u2713")
+       (td class: 'text "Supported by third-party library*")))
+     (td
+      (tr
+       (td class: 'text (b "SRFI status"))
+       (td class: 'text))
+      (tr
+       (td class: 'draft " ")
+       (td class: 'text "Draft"))
+      (tr
+       (td class: 'final " ")
+       (td class: 'text "Final"))
+       (tr
+        (td class: 'superseded " ")
+        (td class: 'text "Superseded"))
+       (tr
+        (td class: 'withdrawn " ")
+        (td class: 'text "Withdrawn")))))
     (br)
     (table class: 'main
      (srfi-table-heading-row)
