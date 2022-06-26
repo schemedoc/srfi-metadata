@@ -51,7 +51,7 @@
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"
-                "master" "release0_9_11"
+                "master" "release0_9_12"
                 "src/srfis.scm"
                 "^srfi-[0-9]+"
                 '())
