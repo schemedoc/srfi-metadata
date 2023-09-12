@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 {
     echo 15
     curl --location --fail --silent --show-error \
-        https://github.com/egallesio/STklos/archive/stklos-1.70.tar.gz |
+        https://github.com/egallesio/STklos/archive/stklos-2.00.tar.gz |
         gunzip |
-        ${TAR:-tar} -xf - --to-stdout --wildcards 'STklos-stklos-1.70/SUPPORTED-SRFIS' |
+        ${TAR:-tar} -xf - --to-stdout --wildcards 'STklos-stklos-2.00/SUPPORTED-SRFIS' |
         grep -oE 'SRFI-[0-9]+:'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/stklos.scm
