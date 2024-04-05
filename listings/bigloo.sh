@@ -4,8 +4,8 @@ set -eu -o pipefail
 cd "$(dirname "$0")"
 {
     curl --location --fail --silent --show-error \
-        https://github.com/manuel-serrano/bigloo/archive/4.3h.tar.gz |
+        https://github.com/manuel-serrano/bigloo/archive/4.5b.tar.gz |
         gunzip |
-        ${TAR:-tar} -xf - --to-stdout --wildcards 'bigloo-4.3h/manuals/srfi.texi' |
+        ${TAR:-tar} -xf - --to-stdout --wildcards 'bigloo-4.5b/manuals/srfi.texi' |
         grep -oE '^@item @code{srfi-[0-9]+} '
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/bigloo.scm
