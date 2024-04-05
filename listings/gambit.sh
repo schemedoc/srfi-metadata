@@ -3,9 +3,9 @@
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error --location \
-	https://github.com/gambit/gambit/archive/v4.9.3.tar.gz |
+	https://github.com/gambit/gambit/archive/v4.9.5.tar.gz |
 	gunzip |
-	tar -xf - --to-stdout 'gambit-4.9.3/README' |
+	tar -xf - --to-stdout 'gambit-4.9.5/README' |
 	grep -oE '    - SRFI [0-9]+ ' |
 	grep -oE '[0-9]+' |
 	sort -g |
