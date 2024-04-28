@@ -4,8 +4,8 @@ set -eu -o pipefail
 cd "$(dirname "$0")"
 {
     curl --location --fail --silent --show-error \
-        https://gitlab.com/weinholt/loko/-/archive/v0.6.0/loko-v0.6.0.tar.gz |
+        https://gitlab.com/weinholt/loko/-/archive/v0.12.1/loko-v0.12.1.tar.gz |
         gunzip |
-        ${TAR:-tar} -xf - --to-stdout --wildcards 'loko-v0.6.0*/Documentation/manual/lib-std.texi' |
+        ${TAR:-tar} -xf - --to-stdout --wildcards 'loko-v0.12.1*/Documentation/manual/lib-std.texi' |
         grep -oE '^@code{\(srfi :[0-9]+ '
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/loko.scm

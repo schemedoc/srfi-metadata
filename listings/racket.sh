@@ -4,7 +4,7 @@ set -eu -o pipefail
 cd "$(dirname "$0")"
 {
     curl --location --fail --silent --show-error \
-        https://github.com/racket/srfi/archive/v8.2.tar.gz |
+        https://github.com/racket/srfi/archive/v8.12.tar.gz |
         gunzip |
         ${TAR:-tar} -tf - |
         sed 's@[^/]*/@@' |

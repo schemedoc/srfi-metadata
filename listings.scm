@@ -32,14 +32,14 @@
   (list
    (make-scheme "bigloo" "github"
                 "manuel-serrano" "bigloo"
-                "master" "4.3h"
+                "master" "4.5b"
                 "manuals/srfi.texi"
                 "^@item @code{srfi-[0-9]+} "
                 '())
 
    (make-scheme "chibi" "github"
                 "ashinn" "chibi-scheme"
-                "master" "0.9.1"
+                "master" "0.10"
                 "lib/srfi/[0-9]+.sld"
                 #f
                 '(0))
@@ -51,15 +51,15 @@
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"
-                "master" "release0_9_12"
+                "master" "release0_9_15"
                 "src/srfis.scm"
                 "^srfi-[0-9]+"
                 '())
 
    (make-scheme "gerbil" "github"
-                "vyzo" "gerbil"
-                "master" "v0.16"
-                "doc/guide/srfi.md"
+                "mighty-gerbils" "gerbil"
+                "master" "v0.18.1"
+                "doc/reference/srfi/README.md"
                 "\\[SRFI +[0-9]+\\]"
                 '())
 
@@ -72,28 +72,28 @@
 
    (make-scheme "loko" "gitlab"
                 "weinholt" "loko"
-                "master" "v0.6.0"
+                "master" "v0.12.1"
                 "Documentation/manual/lib-std.texi"
                 "^@code{\\(srfi :[0-9]+ "
                 '())
 
    (make-scheme "sagittarius" "github"
                 "ktakashi" "sagittarius-scheme"
-                "master" "version_0.9.7"
-                "doc/srfi.scrbl"
-                "\\(srfi :[0-9]+[ )]"
+                "master" "version_0.9.11"
+                "doc/srfi.md"
+                "SRFI-[0-9]+]"
                 '())
 
    (make-scheme "racket" "github"
                 "racket" "srfi"
-                "master" "v8.2"
+                "master" "v8.12"
                 "srfi-lib/srfi/[%a0-9]*"
                 #f
                 '())
 
    (make-scheme "stklos" "github"
                 "egallesio" "STklos"
-                "master" "stklos-1.70"
+                "master" "stklos-2.00"
                 "SUPPORTED-SRFIS"
                 "SRFI-[0-9]+:"
                 '(15))

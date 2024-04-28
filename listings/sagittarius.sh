@@ -7,5 +7,5 @@ cd "$(dirname "$0")"
         https://github.com/ktakashi/sagittarius-scheme/archive/version_0.9.11.tar.gz |
         gunzip |
         ${TAR:-tar} -xf - --to-stdout --wildcards 'sagittarius-scheme-version_0.9.11/doc/srfi.md' |
-        grep -oE '\(srfi :[0-9]+[ )]'
+        grep -oE 'SRFI-[0-9]+]'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/sagittarius.scm
