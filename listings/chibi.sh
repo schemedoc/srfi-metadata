@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 {
     echo 0
     curl --location --fail --silent --show-error \
-        https://github.com/ashinn/chibi-scheme/archive/0.9.1.tar.gz |
+        https://github.com/ashinn/chibi-scheme/archive/0.10.tar.gz |
         gunzip |
         ${TAR:-tar} -tf - |
         sed 's@[^/]*/@@' |

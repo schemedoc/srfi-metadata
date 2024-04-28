@@ -4,8 +4,8 @@ set -eu -o pipefail
 cd "$(dirname "$0")"
 {
     curl --location --fail --silent --show-error \
-        https://github.com/vyzo/gerbil/archive/master.tar.gz |
+        https://github.com/mighty-gerbils/gerbil/archive/master.tar.gz |
         gunzip |
-        ${TAR:-tar} -xf - --to-stdout --wildcards 'gerbil-master/doc/guide/srfi.md' |
+        ${TAR:-tar} -xf - --to-stdout --wildcards 'gerbil-master/doc/reference/srfi/README.md' |
         grep -oE '\[SRFI +[0-9]+\]'
 } | grep -oE '[0-9]+' | sort -g | uniq >../data/gerbil-head.scm
