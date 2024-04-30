@@ -1,4 +1,5 @@
 #!/bin/sh
 set -eu
 cd "$(dirname "$0")"
-rsync table.html scheme.org:/production/docs/www/srfi/support/index.html
+rsync -vcr table.html \
+    tuonela.scheme.org:/production/docs/www/srfi/support/index.html
