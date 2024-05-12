@@ -105,13 +105,15 @@
                 #f
                 '(0 7 46))
 
+   ;; "On hiatus" since 2019.
+   #|
    (make-scheme "vicare" "github"
                 "marcomaggi" "vicare"
                 "master" "v0.4d1.2"
                 "doc/srfi.texi"
                 "@ansrfi{[0-9]+}"
                 '())
-
+   |#
    ))
 
 (define (scheme-archive-url scm git-ref)

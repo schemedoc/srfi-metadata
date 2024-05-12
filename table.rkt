@@ -21,16 +21,14 @@
      Guile
      Iron
      Kawa
-     Larceny
      Loko
      MIT
      Racket
      Sagittarius
-     Scheme48
      STKlos
      Tiny
      Unsyntax
-     Vicare
+     ;; Vicare
      Ypsilon
      SLIB
      Snow-Fort))
