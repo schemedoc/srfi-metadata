@@ -44,10 +44,12 @@
                 #f
                 '(0))
 
-   ;; (make-scheme "gambit" "github"
-   ;;              "gambit" "gambit"
-   ;;              "master" "v4.9.3"
-   ;;              "lib/srfi/[0-9]+" #f)
+   (make-scheme "gambit" "github"
+                 "gambit" "gambit"
+                 "master" "v4.9.5"
+                 "lib/srfi/[0-9]+"
+                 #f
+                 '())
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"

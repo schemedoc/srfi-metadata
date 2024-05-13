@@ -38,7 +38,8 @@
 @(define (read-listing impl suffix)
    (let* ((impl (string-downcase (symbol->string impl)))
           (filename (string-append "data/" impl suffix ".scm")))
-     (with-input-from-file filename read-all)))
+     (with-handlers ((exn:fail? (lambda _ '())))
+       (with-input-from-file filename read-all))))
 
 @(define implementation-support
    (map

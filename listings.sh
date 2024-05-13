@@ -7,6 +7,7 @@ echo "Generated."
 echo
 echo "Scraping listing data..."
 cd listings
+chmod +x ./*.sh
 for f in *.sh; do
     echo "$f";
     ./"$f";
