@@ -5,17 +5,24 @@ Contributions welcome!
 You can view the table [[http://htmlpreview.github.io/?https://github.com/schemedoc/srfi-metadata/blob/master/table.html][here]].
 
 ** How to update the table
+
    Simply run =generate.sh=, which takes the following steps:
 
    Run =srfi-data.sh= to refresh =data/srfi-data.scm=.
 
-   Run =listings.sh= to generate scripts in =listings/*.sh= and run
-   each of them to obtain each implementation's list of supported
-   SRFIs. (This script calls Gauche by default, but you can adjust it
-   to use any R7RS Scheme for =listings.scm=.)
+   Run =listings.sh= to generate the scripts in =listings/*.sh= and
+   run them to obtain each implementation's list of supported SRFIs.
 
-   Run =external.sh= (requires Racket with =sxml= and =json= packages)
-   to obtain SRFI support data for implementations' external libraries.
+   Run =external.sh= to obtain SRFI support data for implementations'
+   external libraries.
 
-   Run =table.sh= (also uses Racket) to generate =table.html= and open
-   it, and done! You can now view the newest =table.html= and push it.
+   Run =table.sh= to generate =table.html= and open it.
+
+   Run =upload.sh= to push it.
+
+** Requirements
+
+  =listings.sh= calls Gauche by default, but you can adjust it to use
+  any R7RS Scheme.
+
+  =external.sh= and =table.sh= need Racket and =raco pkg install sxml=
