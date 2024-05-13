@@ -193,6 +193,14 @@
      "CHICKEN Scheme provides third-party SRFI libraries through its package manager, "
      "in the form of " (a href: "https://wiki.call-cc.org/eggs" "eggs") ".")
     (p
+     (b "* On removals: ")
+     "Implementations will be removed from this table if either:"
+     (br)
+     (ol
+      (li "There is no mailing list or repository activity for three or more years from the date this
+table was generated.")
+      (li "Their maintainer indicates that the implementation is unmaintained.")))
+    (p
      (b "** Disclaimer: ")
      "The responsibility for stating that a SRFI is supported is on the Scheme implementation developers.")
     (footer
