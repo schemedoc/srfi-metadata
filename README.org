@@ -10,11 +10,9 @@ You can view the table [[http://htmlpreview.github.io/?https://github.com/scheme
 
    * Runs =srfi-data.sh= to refresh =data/srfi-data.scm=.
 
-   * Runs =listings.sh= to generate the scripts in =listings/*.sh= and
-   run them to obtain each implementation's list of supported SRFIs.
+   * Runs =listings.sh= to generate the scripts in =listings/*.sh= and run them to obtain each implementation's list of supported SRFIs.
 
-   * Runs =external.sh= to obtain SRFI support data for implementations'
-   external libraries.
+   * Runs =external.sh= to obtain SRFI support data for implementations' external libraries.
 
    * Runs =table.sh= to generate =table.html= and open it.
 
