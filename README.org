@@ -8,17 +8,19 @@ You can view the table [[http://htmlpreview.github.io/?https://github.com/scheme
 
    Simply run =generate.sh=, which takes the following steps:
 
-   Run =srfi-data.sh= to refresh =data/srfi-data.scm=.
+   * Runs =srfi-data.sh= to refresh =data/srfi-data.scm=.
 
-   Run =listings.sh= to generate the scripts in =listings/*.sh= and
+   * Runs =listings.sh= to generate the scripts in =listings/*.sh= and
    run them to obtain each implementation's list of supported SRFIs.
 
-   Run =external.sh= to obtain SRFI support data for implementations'
+   * Runs =external.sh= to obtain SRFI support data for implementations'
    external libraries.
 
-   Run =table.sh= to generate =table.html= and open it.
+   * Runs =table.sh= to generate =table.html= and open it.
 
-   Run =upload.sh= to push it.
+   Once =table.html= has been generated, it is committed to git.
+
+   Run =upload.sh= to publish it to the web server.
 
 ** Requirements
 
