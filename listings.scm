@@ -44,10 +44,12 @@
                 #f
                 '(0))
 
-   ;; (make-scheme "gambit" "github"
-   ;;              "gambit" "gambit"
-   ;;              "master" "v4.9.3"
-   ;;              "lib/srfi/[0-9]+" #f)
+   (make-scheme "gambit" "github"
+                 "gambit" "gambit"
+                 "master" "v4.9.5"
+                 "lib/srfi/[0-9]+"
+                 #f
+                 '())
 
    (make-scheme "gauche" "github"
                 "shirok" "Gauche"
@@ -105,13 +107,15 @@
                 #f
                 '(0 7 46))
 
+   ;; "On hiatus" since 2019.
+   #|
    (make-scheme "vicare" "github"
                 "marcomaggi" "vicare"
                 "master" "v0.4d1.2"
                 "doc/srfi.texi"
                 "@ansrfi{[0-9]+}"
                 '())
-
+   |#
    ))
 
 (define (scheme-archive-url scm git-ref)
