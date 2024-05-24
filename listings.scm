@@ -100,6 +100,13 @@
                 "SRFI-[0-9]+:"
                 '(15))
 
+   (make-scheme "tr7" "gitlab"
+                "jobol" "tr7"
+                "v1" "v1.0.10"
+                "tr7libs/srfi/[0-9]+.sld"
+                #f
+                '(0))
+
    (make-scheme "unsyntax" "gitlab"
                 "nieper" "unsyntax"
                 "master" "v0.0.3"
@@ -174,7 +181,8 @@
                (disp tab tab "${TAR:-tar} -tf - |")
                (disp tab tab "sed 's@[^/]*/@@' |")
                (disp tab tab "grep -oE '" (scheme-filename scm) "' |")
-               (disp tab tab "sed 's@%3a@@'"))
+               (disp tab tab "sed 's@%3a@@' |")
+               (disp tab tab "sed 's/.*\\///'"))
               (else
                (disp tab tab "${TAR:-tar} -xf - --to-stdout --wildcards '"
                      (scheme-archive-filename scm git-ref) "' |")

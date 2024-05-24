@@ -27,6 +27,7 @@
      Sagittarius
      STKlos
      Tiny
+     TR7
      Unsyntax
      ;; Vicare
      Ypsilon
