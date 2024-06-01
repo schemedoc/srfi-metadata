@@ -39,7 +39,7 @@
 
    (make-scheme "chibi" "github"
                 "ashinn" "chibi-scheme"
-                "master" "0.10"
+                "master" "0.11"
                 "lib/srfi/[0-9]+.sld"
                 #f
                 '(0))
