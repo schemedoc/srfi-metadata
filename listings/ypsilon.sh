@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eu -o pipefail
 cd "$(dirname "$0")"
 curl --fail --silent --show-error -L \
