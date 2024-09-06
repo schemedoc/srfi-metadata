@@ -189,7 +189,7 @@
                      (scheme-archive-filename scm git-ref) "' |")
                (disp tab tab "grep -oE '" (scheme-contents scm) "'"))))
       (disp "} | grep -oE '[0-9]+' | sort -g | uniq"
-            " >../data/" name ".scm"))))
+            " >../data/" name ".pose"))))
 
 (for-each (lambda (scm)
             (write-listing scm (scheme-git-ref/head scm) "-head")

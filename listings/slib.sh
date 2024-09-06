@@ -6,4 +6,4 @@ curl --fail --silent --show-error \
     grep -E 'srfi-[0-9]+' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq > ../data/slib.scm
+    uniq >../data/slib.pose

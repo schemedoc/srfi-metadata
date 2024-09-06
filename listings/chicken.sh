@@ -6,4 +6,4 @@ curl --fail --silent --show-error \
     grep -oE '>SRFI-[0-9]+<' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq > ../data/chicken.scm
+    uniq >../data/chicken.pose

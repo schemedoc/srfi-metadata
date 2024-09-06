@@ -9,4 +9,4 @@ curl --fail --silent --show-error -L \
     grep -oE 'sitelib/srfi/[0-9]+.scm' |
     grep -oE '[0-9]+' |
     sort -g |
-    uniq > ../data/ypsilon-head.scm
+    uniq >../data/ypsilon-head.pose
