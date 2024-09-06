@@ -2,7 +2,8 @@
         (scheme char)
         (scheme file)
         (scheme write)
-        (srfi 28))
+        (srfi 28)
+        (srfi 193))
 
 (define (disp . xs)
   (for-each display xs)
@@ -163,7 +164,7 @@
 (define (write-listing scm git-ref suffix)
   (define name (string-append (scheme-name scm) suffix))
   (with-output-to-file
-      (string-append "listings/" name ".sh")
+      (string-append (script-directory) "listings/" name ".sh")
     (lambda ()
       (define tab "    ")
       (disp "#!/usr/bin/env bash")
