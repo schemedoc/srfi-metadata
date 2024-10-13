@@ -96,7 +96,7 @@
 
    (make-scheme "stklos" "github"
                 "egallesio" "STklos"
-                "master" "stklos-2.00"
+                "master" "stklos-2.10"
                 "SUPPORTED-SRFIS"
                 "SRFI-[0-9]+:"
                 '(15))
