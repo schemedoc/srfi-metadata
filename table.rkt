@@ -14,6 +14,7 @@
    '(Bigloo
      Chez
      Chibi
+     Cyclone
      CHICKEN
      Gambit
      Gauche
