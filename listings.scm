@@ -45,6 +45,13 @@
                 #f
                 '(0))
 
+   (make-scheme "cyclone" "github"
+                "justinethier" "cyclone"
+                "master" "v0.36.0"
+                "srfi/[0-9]+.sld"
+                #f
+                '(0))
+
    (make-scheme "gambit" "github"
                  "gambit" "gambit"
                  "master" "v4.9.5"
