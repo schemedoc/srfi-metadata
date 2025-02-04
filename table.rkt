@@ -29,7 +29,7 @@
      STKlos
      Tiny
      TR7
-     Unsyntax
+     ;; Unsyntax
      ;; Vicare
      Ypsilon
      SLIB

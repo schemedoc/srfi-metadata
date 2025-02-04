@@ -10,5 +10,4 @@ listings/racket*
 listings/sagittarius*
 listings/stklos*
 listings/tr7*
-listings/unsyntax*
 srfi-data.scm

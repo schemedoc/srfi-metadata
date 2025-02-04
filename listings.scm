@@ -115,12 +115,15 @@
                 #f
                 '(0))
 
+   ;; Passed 3 years of no activity rule in late 2024.
+   #|
    (make-scheme "unsyntax" "gitlab"
                 "nieper" "unsyntax"
                 "master" "v0.0.3"
                 "src/srfi/[0-9]+.s.?.?"
                 #f
                 '(0 7 46))
+   |#
 
    ;; "On hiatus" since 2019.
    #|
