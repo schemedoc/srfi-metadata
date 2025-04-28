@@ -45,6 +45,13 @@
                 #f
                 '(0))
 
+   (make-scheme "cyclone" "github"
+                "justinethier" "cyclone"
+                "master" "v0.36.0"
+                "srfi/[0-9]+.sld"
+                #f
+                '(0))
+
    (make-scheme "gambit" "github"
                  "gambit" "gambit"
                  "master" "v4.9.5"
@@ -108,12 +115,15 @@
                 #f
                 '(0))
 
+   ;; Passed 3 years of no activity rule in late 2024.
+   #|
    (make-scheme "unsyntax" "gitlab"
                 "nieper" "unsyntax"
                 "master" "v0.0.3"
                 "src/srfi/[0-9]+.s.?.?"
                 #f
                 '(0 7 46))
+   |#
 
    ;; "On hiatus" since 2019.
    #|
