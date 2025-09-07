@@ -82,7 +82,7 @@
 
    (make-scheme "sagittarius" "github"
                 "ktakashi" "sagittarius-scheme"
-                "master" "version_0.9.11"
+                "master" "v0.9.13"
                 "doc/srfi.md"
                 "SRFI-[0-9]+]"
                 '())
