@@ -94,6 +94,13 @@
                 #f
                 '())
 
+   (make-scheme "skint" "github"
+                "false-schemers" "skint"
+                "master" "v0.6.5"
+                "lib/srfi/[0-9]+.sld"
+                #f
+                '(0))
+
    (make-scheme "stklos" "github"
                 "egallesio" "STklos"
                 "master" "stklos-2.10"
