@@ -25,6 +25,7 @@
      MIT
      Racket
      Sagittarius
+     Skint
      STKlos
      Tiny
      TR7
